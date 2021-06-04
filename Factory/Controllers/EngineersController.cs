@@ -54,7 +54,7 @@ namespace Factory.Controllers
     {
       _db.Entry(engineer).State = EntityState.Modified;
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Details", new { id = engineer.EngineerId });
     }
     public ActionResult AddMachine(int id)
     {
@@ -70,7 +70,7 @@ namespace Factory.Controllers
         _db.EngineerMachine.Add(new EngineerMachine() { MachineId = MachineId, EngineerId = engineer.EngineerId });
       }
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Details", new { id = engineer.EngineerId });
     }
     public ActionResult Delete(int id)
     {
@@ -86,12 +86,12 @@ namespace Factory.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-    public ActionResult DeleteMachine(int joinIdrandomn)
+    public ActionResult DeleteMachine(int joinId, int engineerId)
     {
-      var joinEntry = _db.EngineerMachine.FirstOrDefault(entry => entry.EngineerMachineId == joinIdrandomn);
+      var joinEntry = _db.EngineerMachine.FirstOrDefault(entry => entry.EngineerMachineId == joinId);
       _db.EngineerMachine.Remove(joinEntry);
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Details", new { id = engineerId });
     }
   }
 }

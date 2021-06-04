@@ -58,7 +58,7 @@ namespace Factory.Controllers
       }
       _db.Entry(machine).State = EntityState.Modified;
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Details", new { id = machine.MachineId });
     }
     public ActionResult AddEngineer(int id)
     {
@@ -67,14 +67,14 @@ namespace Factory.Controllers
       return View(thisMachine);
     }
     [HttpPost]
-    public ActionResult AddEngineer(Machine Machine, int EngineerId)
+    public ActionResult AddEngineer(Machine machine, int EngineerId)
     {
       if (EngineerId != 0)
       {
-        _db.EngineerMachine.Add(new EngineerMachine() { EngineerId = EngineerId, MachineId = Machine.MachineId });
+        _db.EngineerMachine.Add(new EngineerMachine() { EngineerId = EngineerId, MachineId = machine.MachineId });
       }
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Details", new { id = machine.MachineId });
     }
     public ActionResult Delete(int id)
     {
@@ -92,13 +92,12 @@ namespace Factory.Controllers
     }
 
     [HttpPost]
-    public ActionResult DeleteEngineer(int joinId)
+    public ActionResult DeleteEngineer(int joinId, int machineId)
     {
-      Console.WriteLine(joinId);
       var joinEntry = _db.EngineerMachine.FirstOrDefault(entry => entry.EngineerMachineId == joinId);
       _db.EngineerMachine.Remove(joinEntry);
       _db.SaveChanges();
-      return RedirectToAction("Index");
+      return RedirectToAction("Details", new { id = machineId });
     }
   }
 }

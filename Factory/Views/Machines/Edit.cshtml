@@ -34,6 +34,7 @@ else
       @using (Html.BeginForm("DeleteEngineer", "Machines"))
       {
         @Html.Hidden("joinId", @join.EngineerMachineId)
+        @Html.Hidden("machineId", @Model.MachineId)
         <input type="submit" value="Delete this Engineer from this Machine" />
       }
     }
