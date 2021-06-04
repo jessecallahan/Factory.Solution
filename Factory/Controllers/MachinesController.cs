@@ -4,20 +4,22 @@ using Factory.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 
 namespace Factory.Controllers
 {
-  public class ItemsController : Controller
+  public class MachinesController : Controller
   {
     private readonly FactoryContext _db;
 
-    public ItemsController(FactoryContext db)
+    public MachinesController(FactoryContext db)
     {
       _db = db;
     }
 
     public ActionResult Index()
     {
+      List<Machine> model = _db.Machines.ToList();
       return View(_db.Machines.ToList());
     }
     public ActionResult Create()
@@ -90,9 +92,10 @@ namespace Factory.Controllers
     }
 
     [HttpPost]
-    public ActionResult DeleteEngineer(int joinIdrandomn)
+    public ActionResult DeleteEngineer(int joinId)
     {
-      var joinEntry = _db.EngineerMachine.FirstOrDefault(entry => entry.EngineerMachineId == joinIdrandomn);
+      Console.WriteLine(joinId);
+      var joinEntry = _db.EngineerMachine.FirstOrDefault(entry => entry.EngineerMachineId == joinId);
       _db.EngineerMachine.Remove(joinEntry);
       _db.SaveChanges();
       return RedirectToAction("Index");
