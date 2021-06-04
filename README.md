@@ -6,7 +6,7 @@ By _**Jesse Callahan**_</br>
 Contact: _**Jessetylercallahan@gmail.com**_</br>
 
 ## Description
-Dr. Sillystringz Factory is a C# application in the .NET MVC Framework that utilizes a local sql database. This application simulates a Factory database, where an owner can see all the Engineers and Machines they are licensed to use, The database utilizes a many to many relationship. 
+Dr. Sillystringz Factory is a C# application in the .NET MVC Framework that utilizes a local sql database. This application simulates a Factory database, where an owner can see all the Engineers and Machines they are licensed to use. The database utilizes a many to many relationship. 
 
 ## Setup/Installation Requirements
 
