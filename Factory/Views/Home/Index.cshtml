@@ -3,5 +3,16 @@
 }
 
 <h1>Welcome to the To Dr. Sillystringz factory!</h1>
-<p>@Html.ActionLink("See all Engineers", "Index", "Engineers")</p>
-<p>@Html.ActionLink("See all Machines", "Index", "Machines")</p>
+<h2>List of Engineers</h2>
+@foreach (var engineer in ViewBag.Engineers)
+{
+  <li>@Html.ActionLink($"{engineer.Name}", "Details", "Engineers", new { id = engineer.EngineerId }) </li>
+}
+<h2>List of Machines</h2>
+@foreach (var machine in ViewBag.Machines)
+{
+  <li>@Html.ActionLink($"{machine.Name}", "Details", "Machines", new { id = machine.MachineId }) </li>
+}
+</br>
+<p>@Html.ActionLink("Go to Engineers Page", "Index", "Engineers")</p>
+<p>@Html.ActionLink("Go to Machines Page", "Index", "Machines")</p>

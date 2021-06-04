@@ -22,7 +22,8 @@ else
       <li>@join.Engineer.Name</li>
     }
   </ul>
-  <p>Go to the Machine's Edit page if you need to delete it's association to an Engineer </p>
+  <i style="font-size:14px;">Note: Go to the Machine's Edit page if you need to delete it's association to an Engineer
+</i>
 }
 
 <p>@Html.ActionLink("Add an Engineer to this Machine", "AddEngineer", new { id = Model.MachineId })</p>

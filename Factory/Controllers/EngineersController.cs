@@ -65,6 +65,16 @@ namespace Factory.Controllers
     [HttpPost]
     public ActionResult AddMachine(Engineer engineer, int MachineId)
     {
+      //Exception handler for duplicates
+      List<EngineerMachine> model = _db.EngineerMachine.ToList();
+      for (int i = 0; i < model.Count; i++)
+      {
+        if (model[i].EngineerId == engineer.EngineerId && model[i].MachineId == MachineId)
+        {
+          return RedirectToAction("ErrorPage");
+        }
+      }
+
       if (MachineId != 0)
       {
         _db.EngineerMachine.Add(new EngineerMachine() { MachineId = MachineId, EngineerId = engineer.EngineerId });
@@ -93,5 +103,11 @@ namespace Factory.Controllers
       _db.SaveChanges();
       return RedirectToAction("Details", new { id = engineerId });
     }
+    public ActionResult ErrorPage()
+    {
+
+      return View();
+    }
+
   }
 }

@@ -1,0 +1,11 @@
+body {
+  background-color:rgb(194, 255, 115);
+  list-style-type: none;
+  margin: auto;
+  margin-top: 20px;
+  width: 70%;
+  border: 3px solid rgb(213, 134, 255);
+  padding: 10px;
+  padding-top: 0;
+  font-size: 30px;
+}

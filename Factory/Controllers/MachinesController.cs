@@ -4,7 +4,6 @@ using Factory.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
 
 namespace Factory.Controllers
 {
@@ -62,6 +61,7 @@ namespace Factory.Controllers
     }
     public ActionResult AddEngineer(int id)
     {
+
       var thisMachine = _db.Machines.FirstOrDefault(machine => machine.MachineId == id);
       ViewBag.EngineerId = new SelectList(_db.Engineers, "EngineerId", "Name");
       return View(thisMachine);
@@ -69,6 +69,15 @@ namespace Factory.Controllers
     [HttpPost]
     public ActionResult AddEngineer(Machine machine, int EngineerId)
     {
+      //Exception handler for duplicates
+      List<EngineerMachine> model = _db.EngineerMachine.ToList();
+      for (int i = 0; i < model.Count; i++)
+      {
+        if (model[i].MachineId == machine.MachineId && model[i].EngineerId == EngineerId)
+        {
+          return RedirectToAction("ErrorPage", "Engineers");
+        }
+      }
       if (EngineerId != 0)
       {
         _db.EngineerMachine.Add(new EngineerMachine() { EngineerId = EngineerId, MachineId = machine.MachineId });
