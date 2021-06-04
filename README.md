@@ -11,7 +11,7 @@ Dr. Sillystringz Factory is a C# application in the .NET MVC Framework that util
 ## Setup/Installation Requirements
 
 1. Clone this [repository](https://github.com/jessecallahan/Factory.Solution)
-2. From the project directory folder (HairSalon) create a 'appsettings.json' file 
+2. From the project directory folder (Factory) create a 'appsettings.json' file 
 3. First, Copy this into the appsettings.json file:<br/><br/>  `{
     "ConnectionStrings": {
         "DefaultConnection": "Server=localhost;Port=3306;database=jesse_callahan;uid=root;pwd=[YOUR-PASSWORD-HERE];"
